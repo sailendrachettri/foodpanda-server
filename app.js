@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 8000
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({credentials: true, origin: process.env.DEVELOPMENT_URL}))
+app.use(cors({credentials: true, origin: process.env.CLIENT_ORIGIN_URL}))
 
 app.use("/api/auth/user", require('./routes/auth'));
 app.use("/api/dishes/menu", require('./routes/menu'));
