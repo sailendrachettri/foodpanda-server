@@ -19,11 +19,11 @@ router.post('/signup', async (req, res) => {
 
         // compare password with compirm password
         if (!(password === cpassword))
-            return res.status(400).json({ success, message: "Password doesn't match" })
+            return res.status(400).json({ success: false, message: "Password doesn't match" })
 
         // if user exist the send the response that user already exist
         if (user) {
-            res.status(400).json({ success, message: " username already exist" });
+            res.status(400).json({ success, message: " email already exist" });
 
         } else {
             success = true;
@@ -42,7 +42,8 @@ router.post('/signup', async (req, res) => {
             }
             const auth_token = jwt.sign(data, process.env.JWT_SECRET_KEY);
 
-            res.status(200).json({ success, message: "Registration successful!", auth_token, username: user.username })
+            res.cookie('jwt_token', jwt_token);
+            res.status(201).json({ success:true, message: "Registration successful!", auth_token, username: user.username })
         }
 
     } catch (error) {
@@ -87,7 +88,6 @@ router.post('/login', async (req, res) => {
             id: user._id,
             email
         });
-
 
     } catch (error) {
         res.status(500).json({ success, message: "Internal server errrrror", error: error.message });
