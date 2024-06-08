@@ -42,8 +42,8 @@ router.post('/signup', async (req, res) => {
             }
             const auth_token = jwt.sign(data, process.env.JWT_SECRET_KEY);
 
-            res.cookie('jwt_token', jwt_token);
-            res.status(201).json({ success:true, message: "Registration successful!", auth_token, username: user.username })
+            res.cookie('jwt_token', auth_token);
+            res.status(200).json({ success: true, message: "Registration successful!", auth_token, username: user.username })
         }
 
     } catch (error) {

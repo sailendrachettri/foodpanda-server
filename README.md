@@ -1,3 +1,3 @@
 ## FoodPandaZ
 
-### Read the docs [Docs](https://github.com/sailendrachettri/foodpanda)
+### Read the docs: [Documentation](https://github.com/sailendrachettri/foodpanda)
